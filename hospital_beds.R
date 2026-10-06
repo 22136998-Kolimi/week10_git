@@ -15,8 +15,15 @@ covid2020 <- subset(covid, date >= as.Date("2020-07-01") &
 ## H = number of people hospitalised = number of hospital beds needed
 plot(covid2020$date, covid2020$H, type = "l", xaxt = "n",
      col = "red", lwd = 2,
-     xlab = "Month (2020)", ylab = "Hospital beds needed",
-     main = "COVID-19 Simulation: Hospital Beds Needed in Sydney, Jul-Dec 2020")
+     ylim = range(covid2020[, c("H", "C", "D")]),
+     xlab = "Month (2020)", ylab = "Number of people",
+     main = "COVID-19 Simulation: Hospitalised, Critical and Dead in Sydney, Jul-Dec 2020")
+
+## C = number in critical care, D = cumulative number of deaths
+lines(covid2020$date, covid2020$C, col = "purple", lwd = 2)
+lines(covid2020$date, covid2020$D, col = "black", lwd = 2)
+legend("topleft", legend = c("Hospitalised (beds needed)", "Critical", "Dead"),
+       col = c("red", "purple", "black"), lwd = 2, bty = "n")
 
 ## show every month on the x axis
 months <- seq(as.Date("2020-07-01"), as.Date("2020-12-01"), by = "month")
