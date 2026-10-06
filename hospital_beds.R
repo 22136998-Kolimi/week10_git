@@ -13,9 +13,10 @@ covid2020 <- subset(covid, date >= as.Date("2020-07-01") &
 
 ## ---- Plotting ----
 ## H = number of people hospitalised = number of hospital beds needed
-plot(covid2020$date, covid2020$H, type = "l", xaxt = "n",
+## log = "y" puts the y axis on a log scale
+plot(covid2020$date, covid2020$H, type = "l", xaxt = "n", log = "y",
      col = "red", lwd = 2,
-     xlab = "Month (2020)", ylab = "Hospital beds needed",
+     xlab = "Month (2020)", ylab = "Hospital beds needed (log scale)",
      main = "COVID-19 Simulation: Hospital Beds Needed in Sydney, Jul-Dec 2020")
 
 ## show every month on the x axis
