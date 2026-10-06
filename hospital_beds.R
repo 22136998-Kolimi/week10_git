@@ -38,5 +38,13 @@ title(ylab = "Number of people (square root scale)", line = 4)
 ## C = number in critical care, D = cumulative number of deaths
 lines(covid2020$date, sqrt(covid2020$C), col = "purple", lwd = 2)
 lines(covid2020$date, sqrt(covid2020$D), col = "black", lwd = 2)
+
+## mark the day hospital bed demand peaks
+peak <- covid2020[which.max(covid2020$H), ]
+abline(v = peak$date, col = "red", lty = 2)
+text(peak$date, sqrt(peak$H) * 1.04, pos = 4, cex = 0.8, col = "red",
+     labels = paste0("Peak: ", format(round(peak$H), big.mark = ","),
+                     " beds (", format(peak$date, "%d %b"), ")"))
+
 legend("topleft", legend = c("Hospitalised (beds needed)", "Critical", "Dead"),
        col = c("red", "purple", "black"), lwd = 2, bty = "n")
