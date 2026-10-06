@@ -13,4 +13,8 @@ covid2020 <- subset(covid, date >= as.Date("2020-07-01") &
 
 ## ---- Plotting ----
 ## H = number of people hospitalised = number of hospital beds needed
-plot(covid2020$date, covid2020$H, type = "l")
+plot(covid2020$date, covid2020$H, type = "l", xaxt = "n")
+
+## show every month on the x axis
+months <- seq(as.Date("2020-07-01"), as.Date("2020-12-01"), by = "month")
+axis.Date(1, at = months, format = "%b")
